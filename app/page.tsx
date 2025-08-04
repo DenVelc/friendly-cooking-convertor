@@ -1,5 +1,5 @@
-import CookingConverter from "@/components/cooking-converter"
+import CookingConverter from "@/components/ui/cooking-converter";
 
 export default function Home() {
-  return <CookingConverter />
+  return <CookingConverter />;
 }
