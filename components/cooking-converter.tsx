@@ -572,6 +572,43 @@ export default function CookingConverter() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Fun Facts Section */}
+      <div className="max-w-4xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
+          <div className="text-4xl mb-3">⚡</div>
+          <h3 className="font-black text-lg text-gray-800 mb-2">Lightning Fast</h3>
+          <p className="text-gray-600 font-medium">Get instant conversions while you bake!</p>
+        </Card>
+
+        <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
+          <div className="text-4xl mb-3">🎯</div>
+          <h3 className="font-black text-lg text-gray-800 mb-2">Super Accurate</h3>
+          <p className="text-gray-600 font-medium">Professional measurements with multiple weight units!</p>
+        </Card>
+
+        <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
+          <div className="text-4xl mb-3">📱</div>
+          <h3 className="font-black text-lg text-gray-800 mb-2">TikTok Ready</h3>
+          <p className="text-gray-600 font-medium">Perfect for creating viral baking content!</p>
+        </Card>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-white/10 backdrop-blur-sm border-t border-white/20">
+        <div className="container mx-auto px-4 py-12">
+          <div className="text-center">
+            <h3 className="text-3xl font-black text-white mb-4">Bake it. Share it. TikTok it. 🎬</h3>
+            <p className="text-white/80 font-semibold mb-8 text-lg">
+              Tag us in your baking adventures! #FriendlyCooking We love seeing your creations! 💕
+            </p>
+
+            <div className="text-white/60 font-semibold">
+              <p>© 2024 Friendly Cooking Converter • Made with 💜 for bakers everywhere</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
