@@ -378,7 +378,14 @@ export default function CookingConverter() {
                         <label className="text-lg font-bold text-gray-700 block">Measurement Unit 📏</label>
                         <Select value={inputUnit} onValueChange={setInputUnit}>
                           <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-blue-200 focus:border-blue-400 bg-white shadow-lg">
-                            <SelectValue />
+                            <div className="flex items-center gap-3 w-full">
+                              <span className="text-xl flex-shrink-0">
+                                {measurementUnits[inputUnit as keyof typeof measurementUnits].emoji}
+                              </span>
+                              <span className="flex-1 text-left">
+                                {measurementUnits[inputUnit as keyof typeof measurementUnits].name}
+                              </span>
+                            </div>
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-2 border-blue-200">
                             {availableInputUnits.map((unit) => (
@@ -426,7 +433,14 @@ export default function CookingConverter() {
                       <label className="text-lg font-bold text-gray-700 block">Weight Unit ⚖️</label>
                       <Select value={outputUnit} onValueChange={setOutputUnit}>
                         <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-green-200 focus:border-green-400 bg-white shadow-lg">
-                          <SelectValue />
+                          <div className="flex items-center gap-3 w-full">
+                            <span className="text-xl flex-shrink-0">
+                              {weightUnits[outputUnit as keyof typeof weightUnits].emoji}
+                            </span>
+                            <span className="flex-1 text-left">
+                              {weightUnits[outputUnit as keyof typeof weightUnits].name}
+                            </span>
+                          </div>
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-green-200">
                           {Object.entries(weightUnits).map(([unit, info]) => (
@@ -492,7 +506,14 @@ export default function CookingConverter() {
                       <label className="text-lg font-bold text-gray-700 block">Unit 📏</label>
                       <Select value={tempInputUnit} onValueChange={setTempInputUnit}>
                         <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-orange-200 focus:border-orange-400 bg-white shadow-lg">
-                          <SelectValue />
+                          <div className="flex items-center gap-3 w-full">
+                            <span className="text-xl flex-shrink-0">
+                              {tempInputUnit === "fahrenheit" ? "🇺🇸" : "🌍"}
+                            </span>
+                            <span className="flex-1 text-left">
+                              {tempInputUnit === "fahrenheit" ? "Fahrenheit (°F)" : "Celsius (°C)"}
+                            </span>
+                          </div>
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-orange-200">
                           <SelectItem value="fahrenheit" className="text-lg py-3 rounded-xl">
