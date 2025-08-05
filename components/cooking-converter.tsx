@@ -283,33 +283,43 @@ export default function CookingConverter() {
         <div className="absolute inset-0 bg-gradient-to-r from-pink-600/20 to-purple-600/20"></div>
         <div className="relative container mx-auto px-4 py-16 text-center">
           <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 drop-shadow-lg">
               Convert Cups to Grams in Seconds 🍰
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-semibold max-w-2xl mx-auto drop-shadow">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 font-semibold max-w-2xl mx-auto drop-shadow">
               The ultimate baking buddy for TikTok chefs! ✨ No more kitchen math fails!
             </p>
           </div>
 
-          {/* Floating Emojis */}
-          <div className="absolute top-20 left-10 text-4xl animate-bounce">🧁</div>
-          <div className="absolute top-32 right-16 text-4xl animate-pulse">🍪</div>
-          <div className="absolute bottom-20 left-20 text-4xl animate-bounce delay-300">🎂</div>
-          <div className="absolute bottom-32 right-12 text-4xl animate-pulse delay-500">🥧</div>
+          {/* Floating Emojis - Hide on mobile, show on larger screens */}
+          <div className="hidden md:block">
+            <div className="absolute top-20 left-10 text-2xl md:text-4xl animate-bounce">🧁</div>
+            <div className="absolute top-32 right-16 text-2xl md:text-4xl animate-pulse">🍪</div>
+            <div className="absolute bottom-20 left-20 text-2xl md:text-4xl animate-bounce delay-300">🎂</div>
+            <div className="absolute bottom-32 right-12 text-2xl md:text-4xl animate-pulse delay-500">🥧</div>
+          </div>
         </div>
       </div>
 
       {/* Main Converter Section */}
       <div className="container mx-auto px-4 py-16">
-        <Card className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl rounded-3xl border-0">
-          <CardContent className="p-8">
+        <Card className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl rounded-3xl border-0 overflow-hidden">
+          <CardContent className="p-4 sm:p-6 md:p-8">
             <Tabs defaultValue="volume-weight" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8 bg-purple-100 rounded-2xl p-1">
-                <TabsTrigger value="volume-weight" className="rounded-xl font-bold text-lg py-3">
-                  🥄 Volume to Weight
+              <TabsList className="grid w-full grid-cols-2 mb-6 md:mb-8 bg-purple-100 rounded-2xl p-1 h-auto">
+                <TabsTrigger
+                  value="volume-weight"
+                  className="rounded-xl font-bold text-xs sm:text-sm md:text-lg py-3 px-2 whitespace-nowrap"
+                >
+                  <span className="block sm:inline">🥄</span>
+                  <span className="block sm:inline">Volume to Weight</span>
                 </TabsTrigger>
-                <TabsTrigger value="temperature" className="rounded-xl font-bold text-lg py-3">
-                  🌡️ Temperature
+                <TabsTrigger
+                  value="temperature"
+                  className="rounded-xl font-bold text-xs sm:text-sm md:text-lg py-3 px-2 whitespace-nowrap"
+                >
+                  <span className="block sm:inline">🌡️</span>
+                  <span className="block sm:inline">Temperature</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -319,7 +329,7 @@ export default function CookingConverter() {
                   <p className="text-gray-600 font-medium">Convert any ingredient from volume to weight! 🪄</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* Left Column - Input */}
                   <div className="space-y-6">
                     <h3 className="text-xl font-black text-gray-700 text-center">FROM 📥</h3>
@@ -328,7 +338,7 @@ export default function CookingConverter() {
                     <div className="space-y-2">
                       <label className="text-lg font-bold text-gray-700 block">Choose Ingredient 🥄</label>
                       <Select value={selectedIngredient} onValueChange={setSelectedIngredient}>
-                        <SelectTrigger className="h-14 text-lg rounded-2xl border-2 border-purple-200 focus:border-purple-400 bg-white shadow-lg">
+                        <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-purple-200 focus:border-purple-400 bg-white shadow-lg">
                           <SelectValue placeholder="Select ingredient..." />
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-purple-200 max-h-80">
@@ -349,9 +359,9 @@ export default function CookingConverter() {
                                 <div className="text-sm font-bold text-gray-500 px-2 py-1 uppercase">{category}S</div>
                                 {items.map(({ key, ingredient }) => (
                                   <SelectItem key={key} value={key} className="text-lg py-3 rounded-xl">
-                                    <span className="flex items-center gap-2">
-                                      <span className="text-xl">{ingredient.emoji}</span>
-                                      {ingredient.name}
+                                    <span className="flex items-center gap-3">
+                                      <span className="text-xl flex-shrink-0">{ingredient.emoji}</span>
+                                      <span className="flex-1">{ingredient.name}</span>
                                     </span>
                                   </SelectItem>
                                 ))}
@@ -367,17 +377,19 @@ export default function CookingConverter() {
                       <div className="space-y-2">
                         <label className="text-lg font-bold text-gray-700 block">Measurement Unit 📏</label>
                         <Select value={inputUnit} onValueChange={setInputUnit}>
-                          <SelectTrigger className="h-14 text-lg rounded-2xl border-2 border-blue-200 focus:border-blue-400 bg-white shadow-lg">
+                          <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-blue-200 focus:border-blue-400 bg-white shadow-lg">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-2 border-blue-200">
                             {availableInputUnits.map((unit) => (
                               <SelectItem key={unit} value={unit} className="text-lg py-3 rounded-xl">
-                                <span className="flex items-center gap-2">
-                                  <span className="text-xl">
+                                <span className="flex items-center gap-3">
+                                  <span className="text-xl flex-shrink-0">
                                     {measurementUnits[unit as keyof typeof measurementUnits].emoji}
                                   </span>
-                                  {measurementUnits[unit as keyof typeof measurementUnits].name}
+                                  <span className="flex-1">
+                                    {measurementUnits[unit as keyof typeof measurementUnits].name}
+                                  </span>
                                 </span>
                               </SelectItem>
                             ))}
@@ -399,7 +411,7 @@ export default function CookingConverter() {
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
                           placeholder={`Enter ${measurementUnits[inputUnit as keyof typeof measurementUnits].name.toLowerCase()}`}
-                          className="h-14 text-lg rounded-2xl border-2 border-pink-200 focus:border-pink-400 bg-white shadow-lg text-center font-semibold"
+                          className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-pink-200 focus:border-pink-400 bg-white shadow-lg text-center font-semibold"
                         />
                       </div>
                     )}
@@ -413,15 +425,15 @@ export default function CookingConverter() {
                     <div className="space-y-2">
                       <label className="text-lg font-bold text-gray-700 block">Weight Unit ⚖️</label>
                       <Select value={outputUnit} onValueChange={setOutputUnit}>
-                        <SelectTrigger className="h-14 text-lg rounded-2xl border-2 border-green-200 focus:border-green-400 bg-white shadow-lg">
+                        <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-green-200 focus:border-green-400 bg-white shadow-lg">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-green-200">
                           {Object.entries(weightUnits).map(([unit, info]) => (
                             <SelectItem key={unit} value={unit} className="text-lg py-3 rounded-xl">
-                              <span className="flex items-center gap-2">
-                                <span className="text-xl">{info.emoji}</span>
-                                {info.name}
+                              <span className="flex items-center gap-3">
+                                <span className="text-xl flex-shrink-0">{info.emoji}</span>
+                                <span className="flex-1">{info.name}</span>
                               </span>
                             </SelectItem>
                           ))}
@@ -432,21 +444,23 @@ export default function CookingConverter() {
                     {/* Result Display */}
                     {selectedIngredient && amount && inputUnit && result > 0 && (
                       <div
-                        className={`text-center p-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl shadow-lg transform transition-all duration-500 ${isAnimating ? "scale-110" : "scale-100"}`}
+                        className={`text-center p-4 md:p-6 bg-gradient-to-r from-green-100 to-blue-100 rounded-2xl shadow-lg transform transition-all duration-500 ${isAnimating ? "scale-110" : "scale-100"}`}
                       >
-                        <div className="text-6xl mb-2">
+                        <div className="text-4xl md:text-6xl mb-2">
                           {volumeToWeight[selectedIngredient as keyof typeof volumeToWeight].emoji}
                         </div>
-                        <div className="text-2xl font-black text-gray-800 mb-1">
+                        <div className="text-lg md:text-2xl font-black text-gray-800 mb-1">
                           {amount} {measurementUnits[inputUnit as keyof typeof measurementUnits].name.toLowerCase()} =
                         </div>
-                        <div className="text-5xl font-black text-purple-600 mb-2">
+                        <div className="text-3xl md:text-5xl font-black text-purple-600 mb-2">
                           {result} {weightUnits[outputUnit as keyof typeof weightUnits].symbol}
                         </div>
-                        <div className="text-lg text-gray-600 font-semibold">
+                        <div className="text-base md:text-lg text-gray-600 font-semibold">
                           of {volumeToWeight[selectedIngredient as keyof typeof volumeToWeight].name}
                         </div>
-                        <div className="text-sm text-gray-500 mt-2 font-medium">Professional baking standards ⚖️</div>
+                        <div className="text-xs md:text-sm text-gray-500 mt-2 font-medium">
+                          Professional baking standards ⚖️
+                        </div>
                       </div>
                     )}
                   </div>
@@ -460,7 +474,7 @@ export default function CookingConverter() {
                 </div>
 
                 <div className="max-w-2xl mx-auto space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Temperature Input */}
                     <div className="space-y-2">
                       <label className="text-lg font-bold text-gray-700 block">Temperature 🌡️</label>
@@ -469,7 +483,7 @@ export default function CookingConverter() {
                         value={tempInput}
                         onChange={(e) => setTempInput(e.target.value)}
                         placeholder="Enter temperature"
-                        className="h-14 text-lg rounded-2xl border-2 border-orange-200 focus:border-orange-400 bg-white shadow-lg text-center font-semibold"
+                        className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-orange-200 focus:border-orange-400 bg-white shadow-lg text-center font-semibold"
                       />
                     </div>
 
@@ -477,20 +491,20 @@ export default function CookingConverter() {
                     <div className="space-y-2">
                       <label className="text-lg font-bold text-gray-700 block">Unit 📏</label>
                       <Select value={tempInputUnit} onValueChange={setTempInputUnit}>
-                        <SelectTrigger className="h-14 text-lg rounded-2xl border-2 border-orange-200 focus:border-orange-400 bg-white shadow-lg">
+                        <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-orange-200 focus:border-orange-400 bg-white shadow-lg">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-orange-200">
                           <SelectItem value="fahrenheit" className="text-lg py-3 rounded-xl">
-                            <span className="flex items-center gap-2">
-                              <span className="text-xl">🇺🇸</span>
-                              Fahrenheit (°F)
+                            <span className="flex items-center gap-3">
+                              <span className="text-xl flex-shrink-0">🇺🇸</span>
+                              <span className="flex-1">Fahrenheit (°F)</span>
                             </span>
                           </SelectItem>
                           <SelectItem value="celsius" className="text-lg py-3 rounded-xl">
-                            <span className="flex items-center gap-2">
-                              <span className="text-xl">🌍</span>
-                              Celsius (°C)
+                            <span className="flex items-center gap-3">
+                              <span className="text-xl flex-shrink-0">🌍</span>
+                              <span className="flex-1">Celsius (°C)</span>
                             </span>
                           </SelectItem>
                         </SelectContent>
@@ -502,7 +516,7 @@ export default function CookingConverter() {
                   {tempResults && (
                     <div className="text-center p-6 bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl shadow-lg">
                       <div className="text-4xl mb-4">🔥</div>
-                      <div className="grid grid-cols-3 gap-4 text-center">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                         <div className="bg-white/50 rounded-xl p-4">
                           <div className="text-sm font-bold text-gray-600 mb-1">FAHRENHEIT</div>
                           <div className="text-2xl font-black text-red-600">{tempResults.fahrenheit}°F</div>
@@ -539,7 +553,7 @@ export default function CookingConverter() {
         </Card>
 
         {/* Fun Facts Section */}
-        <div className="max-w-4xl mx-auto mt-16 grid md:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
             <div className="text-4xl mb-3">⚡</div>
             <h3 className="font-black text-lg text-gray-800 mb-2">Lightning Fast</h3>
@@ -569,13 +583,13 @@ export default function CookingConverter() {
               Tag us in your baking adventures! We love seeing your creations! 💕
             </p>
 
-            <div className="flex justify-center gap-6 mb-8">
-              <Button className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-black px-8 py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
-                <span className="text-xl mr-2">📱</span>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-8">
+              <Button className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
+                <span className="text-lg md:text-xl mr-2">📱</span>
                 Follow on TikTok
               </Button>
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black px-8 py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
-                <span className="text-xl mr-2">📸</span>
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
+                <span className="text-lg md:text-xl mr-2">📸</span>
                 Follow on Instagram
               </Button>
             </div>
