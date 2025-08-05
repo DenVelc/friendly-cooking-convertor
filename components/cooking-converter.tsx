@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -339,7 +338,20 @@ export default function CookingConverter() {
                       <label className="text-lg font-bold text-gray-700 block">Choose Ingredient 🥄</label>
                       <Select value={selectedIngredient} onValueChange={setSelectedIngredient}>
                         <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-purple-200 focus:border-purple-400 bg-white shadow-lg">
-                          <SelectValue placeholder="Select ingredient..." />
+                          <div className="flex items-center gap-3 w-full">
+                            {selectedIngredient ? (
+                              <>
+                                <span className="text-xl flex-shrink-0">
+                                  {volumeToWeight[selectedIngredient as keyof typeof volumeToWeight].emoji}
+                                </span>
+                                <span className="flex-1 text-left">
+                                  {volumeToWeight[selectedIngredient as keyof typeof volumeToWeight].name}
+                                </span>
+                              </>
+                            ) : (
+                              <span className="flex-1 text-left text-muted-foreground">Select ingredient...</span>
+                            )}
+                          </div>
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl border-2 border-purple-200 max-h-80">
                           <div className="p-2">
@@ -379,12 +391,18 @@ export default function CookingConverter() {
                         <Select value={inputUnit} onValueChange={setInputUnit}>
                           <SelectTrigger className="h-12 md:h-14 text-base md:text-lg rounded-2xl border-2 border-blue-200 focus:border-blue-400 bg-white shadow-lg">
                             <div className="flex items-center gap-3 w-full">
-                              <span className="text-xl flex-shrink-0">
-                                {measurementUnits[inputUnit as keyof typeof measurementUnits].emoji}
-                              </span>
-                              <span className="flex-1 text-left">
-                                {measurementUnits[inputUnit as keyof typeof measurementUnits].name}
-                              </span>
+                              {inputUnit ? (
+                                <>
+                                  <span className="text-xl flex-shrink-0">
+                                    {measurementUnits[inputUnit as keyof typeof measurementUnits].emoji}
+                                  </span>
+                                  <span className="flex-1 text-left">
+                                    {measurementUnits[inputUnit as keyof typeof measurementUnits].name}
+                                  </span>
+                                </>
+                              ) : (
+                                <span className="flex-1 text-left text-muted-foreground">Select unit...</span>
+                              )}
                             </div>
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-2 border-blue-200">
@@ -535,92 +553,25 @@ export default function CookingConverter() {
 
                   {/* Temperature Results */}
                   {tempResults && (
-                    <div className="text-center p-6 bg-gradient-to-r from-orange-100 to-red-100 rounded-2xl shadow-lg">
-                      <div className="text-4xl mb-4">🔥</div>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                        <div className="bg-white/50 rounded-xl p-4">
-                          <div className="text-sm font-bold text-gray-600 mb-1">FAHRENHEIT</div>
-                          <div className="text-2xl font-black text-red-600">{tempResults.fahrenheit}°F</div>
-                        </div>
-                        <div className="bg-white/50 rounded-xl p-4">
-                          <div className="text-sm font-bold text-gray-600 mb-1">CELSIUS</div>
-                          <div className="text-2xl font-black text-blue-600">{tempResults.celsius}°C</div>
-                        </div>
-                        <div className="bg-white/50 rounded-xl p-4">
-                          <div className="text-sm font-bold text-gray-600 mb-1">GAS MARK</div>
-                          <div className="text-2xl font-black text-purple-600">{tempResults.gas_mark}</div>
-                        </div>
+                    <div className="text-center p-4 md:p-6 bg-gradient-to-r from-red-100 to-yellow-100 rounded-2xl shadow-lg transform transition-all duration-500">
+                      <div className="text-4xl md:text-6xl mb-2">🌡️</div>
+                      <div className="text-lg md:text-2xl font-black text-gray-800 mb-1">
+                        {tempInput} {tempInputUnit === "fahrenheit" ? "°F" : "°C"} =
+                      </div>
+                      <div className="text-3xl md:text-5xl font-black text-red-600 mb-2">
+                        {tempResults.celsius} °C / {tempResults.fahrenheit} °F
+                      </div>
+                      <div className="text-base md:text-lg text-gray-600 font-semibold">
+                        Gas Mark: {tempResults.gas_mark}
                       </div>
                     </div>
                   )}
-
-                  {/* Temperature Reference Table */}
-                  <div className="bg-gray-50 rounded-2xl p-6">
-                    <h3 className="text-lg font-black text-gray-800 mb-4 text-center">Quick Reference 📋</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-                      {temperatureConversions.slice(0, 8).map((temp) => (
-                        <div key={temp.gas_mark} className="bg-white rounded-lg p-2 text-center">
-                          <div className="font-bold text-purple-600">Gas {temp.gas_mark}</div>
-                          <div className="text-gray-600">{temp.fahrenheit}°F</div>
-                          <div className="text-gray-600">{temp.celsius}°C</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
-
-        {/* Fun Facts Section */}
-        <div className="max-w-4xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
-            <div className="text-4xl mb-3">⚡</div>
-            <h3 className="font-black text-lg text-gray-800 mb-2">Lightning Fast</h3>
-            <p className="text-gray-600 font-medium">Get instant conversions while you bake!</p>
-          </Card>
-
-          <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
-            <div className="text-4xl mb-3">🎯</div>
-            <h3 className="font-black text-lg text-gray-800 mb-2">Super Accurate</h3>
-            <p className="text-gray-600 font-medium">Professional measurements with multiple weight units!</p>
-          </Card>
-
-          <Card className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border-0 p-6 text-center transform hover:scale-105 transition-all duration-200">
-            <div className="text-4xl mb-3">📱</div>
-            <h3 className="font-black text-lg text-gray-800 mb-2">TikTok Ready</h3>
-            <p className="text-gray-600 font-medium">Perfect for creating viral baking content!</p>
-          </Card>
-        </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-white/10 backdrop-blur-sm border-t border-white/20">
-        <div className="container mx-auto px-4 py-12">
-          <div className="text-center">
-            <h3 className="text-3xl font-black text-white mb-4">Bake it. Share it. TikTok it. 🎬</h3>
-            <p className="text-white/80 font-semibold mb-8 text-lg">
-              Tag us in your baking adventures! We love seeing your creations! 💕
-            </p>
-
-            <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-8">
-              <Button className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
-                <span className="text-lg md:text-xl mr-2">📱</span>
-                Follow on TikTok
-              </Button>
-              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-black px-6 md:px-8 py-3 md:py-4 rounded-2xl shadow-xl transform hover:scale-110 transition-all duration-200">
-                <span className="text-lg md:text-xl mr-2">📸</span>
-                Follow on Instagram
-              </Button>
-            </div>
-
-            <div className="text-white/60 font-semibold">
-              <p>© 2024 Friendly Cooking Converter • Made with 💜 for bakers everywhere</p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
