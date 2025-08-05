@@ -360,7 +360,7 @@ export default function CookingConverter() {
                                 {items.map(({ key, ingredient }) => (
                                   <SelectItem key={key} value={key} className="text-lg py-3 rounded-xl">
                                     <span className="flex items-center gap-3">
-                                      <span className="text-xl flex-shrink-0">{ingredient.emoji}</span>
+                                      <span className="text-xl flex-shrink-0 w-6 text-center">{ingredient.emoji}</span>
                                       <span className="flex-1">{ingredient.name}</span>
                                     </span>
                                   </SelectItem>
@@ -384,7 +384,7 @@ export default function CookingConverter() {
                             {availableInputUnits.map((unit) => (
                               <SelectItem key={unit} value={unit} className="text-lg py-3 rounded-xl">
                                 <span className="flex items-center gap-3">
-                                  <span className="text-xl flex-shrink-0">
+                                  <span className="text-xl flex-shrink-0 w-6 text-center">
                                     {measurementUnits[unit as keyof typeof measurementUnits].emoji}
                                   </span>
                                   <span className="flex-1">
@@ -432,7 +432,7 @@ export default function CookingConverter() {
                           {Object.entries(weightUnits).map(([unit, info]) => (
                             <SelectItem key={unit} value={unit} className="text-lg py-3 rounded-xl">
                               <span className="flex items-center gap-3">
-                                <span className="text-xl flex-shrink-0">{info.emoji}</span>
+                                <span className="text-xl flex-shrink-0 w-6 text-center">{info.emoji}</span>
                                 <span className="flex-1">{info.name}</span>
                               </span>
                             </SelectItem>
@@ -497,13 +497,13 @@ export default function CookingConverter() {
                         <SelectContent className="rounded-2xl border-2 border-orange-200">
                           <SelectItem value="fahrenheit" className="text-lg py-3 rounded-xl">
                             <span className="flex items-center gap-3">
-                              <span className="text-xl flex-shrink-0">🇺🇸</span>
+                              <span className="text-xl flex-shrink-0 w-6 text-center">🇺🇸</span>
                               <span className="flex-1">Fahrenheit (°F)</span>
                             </span>
                           </SelectItem>
                           <SelectItem value="celsius" className="text-lg py-3 rounded-xl">
                             <span className="flex items-center gap-3">
-                              <span className="text-xl flex-shrink-0">🌍</span>
+                              <span className="text-xl flex-shrink-0 w-6 text-center">🌍</span>
                               <span className="flex-1">Celsius (°C)</span>
                             </span>
                           </SelectItem>
