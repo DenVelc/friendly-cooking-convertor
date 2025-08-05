@@ -290,13 +290,48 @@ export default function CookingConverter() {
             </p>
           </div>
 
-          {/* Floating Emojis - Hide on mobile, show on larger screens */}
+          {/* Floating Emojis - Hide on mobile, show on larger screens with fade animation */}
           <div className="hidden md:block">
-            <div className="absolute top-20 left-10 text-2xl md:text-4xl animate-bounce">🧁</div>
-            <div className="absolute top-32 right-16 text-2xl md:text-4xl animate-pulse">🍪</div>
-            <div className="absolute bottom-20 left-20 text-2xl md:text-4xl animate-bounce delay-300">🎂</div>
-            <div className="absolute bottom-32 right-12 text-2xl md:text-4xl animate-pulse delay-500">🥧</div>
+            <div
+              className="absolute top-20 left-10 text-2xl md:text-4xl animate-bounce opacity-0 animate-pulse"
+              style={{
+                animation: "bounce 2s infinite, fadeInOut 4s infinite",
+              }}
+            >
+              🧁
+            </div>
+            <div
+              className="absolute top-32 right-16 text-2xl md:text-4xl opacity-0 animate-pulse"
+              style={{
+                animation: "pulse 2s infinite, fadeInOut 5s infinite 1s",
+              }}
+            >
+              🍪
+            </div>
+            <div
+              className="absolute bottom-20 left-20 text-2xl md:text-4xl opacity-0 animate-bounce"
+              style={{
+                animation: "bounce 2s infinite, fadeInOut 6s infinite 2s",
+              }}
+            >
+              🎂
+            </div>
+            <div
+              className="absolute bottom-32 right-12 text-2xl md:text-4xl opacity-0 animate-pulse"
+              style={{
+                animation: "pulse 2s infinite, fadeInOut 4.5s infinite 2.5s",
+              }}
+            >
+              🥧
+            </div>
           </div>
+
+          <style jsx>{`
+            @keyframes fadeInOut {
+              0%, 100% { opacity: 0; }
+              50% { opacity: 1; }
+            }
+          `}</style>
         </div>
       </div>
 
