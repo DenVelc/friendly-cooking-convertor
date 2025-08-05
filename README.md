@@ -1,69 +1,109 @@
-# Friendly Cooking Converter
+# 🧁 Friendly Cooking Converter
 
-A playful, modern cooking converter app designed for young bakers and TikTok content creators. Convert volume measurements to weight instantly with professional accuracy!
+A playful, modern cooking converter for young bakers and TikTokers who are *done* trying to figure out what "1 cup of flour" means in real life.
 
-## Features
+**📍 Live demo:**  
+👉 [https://friendly-cooking-convertor.vercel.app](https://friendly-cooking-convertor.vercel.app)
 
-- 🥄 **Volume to Weight Converter**: Convert cups, tablespoons, teaspoons, fluid ounces, milliliters, and liters to grams, ounces, pounds, or kilograms
-- 🌡️ **Temperature Converter**: Convert between Fahrenheit, Celsius, and gas marks for oven temperatures
-- 📱 **TikTok-Ready Design**: Vibrant colors, animations, and mobile-friendly interface
-- ⚖️ **Professional Accuracy**: Based on standard baking measurements
-- 🍰 **11 Common Ingredients**: Flours, sugars, butter, oils, honey, milk, and cocoa powder
+---
 
-## Getting Started
+## 💡 Why this project?
 
-### Prerequisites
+If you've ever tried baking from a TikTok recipe and ended up with a disaster in the oven because “1 cup of sugar” turned into a guessing game — you’re not alone.
 
-- Node.js 18+ 
-- npm or yarn
+### The Problem:
+- 🇺🇸 U.S.-based creators use *cups* for everything.
+- 🇪🇺 Europeans use grams and milliliters.
+- 📱 Viral TikTok recipes don’t come with converters.
+- 🔥 Mistakes in baking lead to wasted ingredients and frustration.
 
-### Installation
+**Solution?**  
+This fun, modern app instantly converts baking measurements and oven temperatures from U.S. to European units – with professional accuracy and a mobile-first design.
 
-1. Clone the repository or download the files
-2. Install dependencies:
+---
 
-\`\`\`bash
-npm install
-# or
-yarn install
-\`\`\`
+## ✨ Features
 
-3. Run the development server:
+- 🥄 **Volume → Weight Converter**  
+  Convert cups, tablespoons, teaspoons, fluid ounces, milliliters, and liters to grams, ounces, pounds, or kilograms.
 
-\`\`\`bash
-npm run dev
-# or
-yarn dev
-\`\`\`
+- 🌡️ **Temperature Converter**  
+  Switch between Fahrenheit, Celsius, and gas marks instantly.
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+- 🍯 **11 Common Ingredients**  
+  Supports flours, sugars, butter, oils, honey, milk, and cocoa powder – each with their own conversion weights.
 
-## Deployment
+- 📱 **TikTok-Ready Design**  
+  Vibrant colors, mobile-friendly layout, minimal friction – perfect for a quick glance mid-recipe.
 
-### Deploy to Vercel
+- ⚖️ **Accurate & Flexible**  
+  Based on standardized baking data and tested with real-world ingredient weights.
 
-1. Push your code to GitHub
-2. Connect your GitHub repository to Vercel
-3. Deploy automatically with zero configuration
+---
 
-### Build for Production
+## 📊 Data Source
 
-\`\`\`bash
-npm run build
-npm start
-\`\`\`
+Ingredient weight and temperature conversions were compiled through a **deep research exploration using ChatGPT** and verified with publicly available cooking references and sources.
 
-## Tech Stack
+---
 
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Radix UI** - Accessible components
-- **Lucide React** - Icons
+## 🚀 Getting Started
 
-## Project Structure
+### 🔧 Prerequisites
 
-\`\`\`
+- Node.js 18+
+- pnpm / npm / yarn
+
+### 🛠️ Installation
+
+```bash
+git clone https://github.com/DenVelc/friendly-cooking-convertor
+cd friendly-cooking-convertor
+pnpm install   # or npm install / yarn install
+```
+
+### 🧪 Development
+
+```bash
+pnpm dev       # or npm run dev / yarn dev
+```
+
+Then open: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## ☁️ Deployment
+
+### 🔄 Deploy to Vercel
+
+- This project is **fully configured** for Vercel.
+- Just connect your GitHub repo, and Vercel handles the rest (zero-config).
+- Auto-builds on push to `main`.
+
+### 🧱 Build for production
+
+```bash
+pnpm build
+pnpm start
+```
+
+---
+
+## 🧰 Tech Stack
+
+| Tool              | Description                         |
+|-------------------|-------------------------------------|
+| **Next.js 14**    | React framework with App Router     |
+| **TypeScript**    | Type safety + modern JS features    |
+| **Tailwind CSS**  | Utility-first CSS styling           |
+| **Radix UI**      | Headless accessible UI components   |
+| **Lucide Icons**  | Open-source icon set                |
+
+---
+
+## 🗂️ Project Structure
+
+```
 ├── app/
 │   ├── globals.css
 │   ├── layout.tsx
@@ -81,16 +121,22 @@ npm start
 ├── package.json
 ├── tailwind.config.js
 └── tsconfig.json
-\`\`\`
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+```
 
 ---
 
-Made with 💜 for bakers everywhere! 🍰
+## 🤝 Contributing
+
+- Ideas, issues or TikTok-inspired features? PRs and feedback welcome!
+- Future features might include: dark mode, ingredient database expansion, or saving conversions.
+
+---
+
+## 📜 License
+
+MIT License – free to use, share, or remix.
+
+---
+
+**Made with 💜 for bakers everywhere.**  
+Let’s never mis-measure flour again. 🍰
